@@ -90,13 +90,6 @@ export default function MenuExplorer({ items }: { items: MenuItem[] }) {
         <div className="mt-12 rounded-xl2 border border-dashed border-brand-200 bg-brand-50/50 py-16 text-center">
           <p className="font-display text-lg font-semibold text-ink">No dishes found</p>
           <p className="mt-2 text-sm text-muted">Try a different search or category.</p>
-          <button
-            type="button"
-            onClick={() => { setQuery(""); setCategory("All"); }}
-            className="btn-ghost mt-6"
-          >
-            Reset filters
-          </button>
         </div>
       )}
     </div>
