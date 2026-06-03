@@ -31,6 +31,15 @@ var HEADERS = ["name", "category", "price", "image", "description"];
 var CACHE_KEY = "menu_json";
 var CACHE_TTL_SECONDS = 30;
 
+/* ----------------------------- Custom menu ----------------------------- */
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu("🌿 Vegety")
+    .addItem("Publish menu", "publishMenu")
+    .addToUi();
+}
+
 /* --------------------------- Sheet helpers ----------------------------- */
 
 /** Creates the Menu tab if needed and writes the header row. */
@@ -44,17 +53,11 @@ function setupHeaders() {
   sheet.setFrozenRows(1);
   sheet.autoResizeColumns(1, HEADERS.length);
   CacheService.getScriptCache().remove(CACHE_KEY);
-  ss.toast('Headers added to the "' + SHEET_NAME + '" tab.', "🌿 Vegety", 5);
 }
 
 /** Clears the cache so the website shows the latest rows immediately. */
 function publishMenu() {
   CacheService.getScriptCache().remove(CACHE_KEY);
-  SpreadsheetApp.getActiveSpreadsheet().toast(
-    "Published — the site will show the latest menu within seconds.",
-    "🌿 Vegety",
-    5
-  );
 }
 
 /* ----------------------------- Web app --------------------------------- */
