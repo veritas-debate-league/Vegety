@@ -18,8 +18,8 @@ import type { MenuItem } from "./types";
 // we return an empty list (the page shows its empty state), never placeholder data.
 // ---------------------------------------------------------------------------
 
-const WEBHOOK_URL = process.env.MENU_WEBHOOK_URL;
-const WEBHOOK_KEY = process.env.MENU_WEBHOOK_KEY;
+const WEBHOOK_URL = process.env.MENU_WEBHOOK_URL?.trim();
+const WEBHOOK_KEY = process.env.MENU_WEBHOOK_KEY?.trim();
 
 type WebhookResponse = { ok: boolean; items?: MenuItem[]; error?: string };
 
@@ -44,8 +44,10 @@ export async function fetchMenu(): Promise<MenuItem[]> {
   if (!WEBHOOK_URL || !WEBHOOK_KEY) return [];
 
   try {
-    const url = `${WEBHOOK_URL}?key=${encodeURIComponent(WEBHOOK_KEY)}`;
-    const res = await fetch(url, {
+    // Build the URL safely: overrides any pasted ?key, encodes correctly.
+    const u = new URL(WEBHOOK_URL);
+    u.searchParams.set("key", WEBHOOK_KEY);
+    const res = await fetch(u.toString(), {
       cache: "no-store",
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
     });
