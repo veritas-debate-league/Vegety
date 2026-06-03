@@ -146,9 +146,9 @@ export function PopularMenu({ items }: { items: MenuItem[] }) {
               key={item.id}
               className={`rounded-xl2 bg-white p-3 shadow-soft transition-shadow duration-200 hover:shadow-card ${i === 1 ? "shadow-card lg:-translate-y-8" : ""}`}
             >
-              <div className="relative aspect-[5/4] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-2xl rounded-tl-none">
                 <Image src={item.image} alt={item.name} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
-                <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
+                <span className="absolute left-0 top-0 rounded-br-2xl bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
                   {item.category}
                 </span>
               </div>
