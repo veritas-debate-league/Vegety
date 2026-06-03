@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ring: 64 145 108;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink font-sans antialiased;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  /* primary CTA — near-black pill (cohesive charcoal + green scheme) */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-cta px-7 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-200 px-6 py-3 text-sm font-semibold text-brand-700 transition-colors duration-200 hover:bg-brand-50;
+  }
+  .eyebrow {
+    @apply text-sm font-medium uppercase tracking-[0.18em] text-brand-500;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(14px, -18px) rotate(10deg); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(12deg); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes crossDrift {
+  0% { transform: translateX(-10vw) translateY(0) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(110vw) translateY(-50px) rotate(70deg); opacity: 0; }
+}
+
+.animate-cross { animation: crossDrift linear infinite backwards; left: 0; }
+
+.animate-fade-slide { animation: fadeSlide 0.4s ease-out; }
+
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-float-slow { animation: float 4.5s ease-in-out infinite; }
+.animate-drift { animation: drift 5s ease-in-out infinite; }
+.animate-sway { animation: sway 3.5s ease-in-out infinite; transform-origin: top center; }
+.animate-dot { animation: pulseDot 2.2s ease-in-out infinite; }
+.animate-spin-slow { animation: spinSlow 40s linear infinite; transform-origin: center; }
+
+/* scroll parallax: --p (bounded, local to the Parallax wrapper) × amplitude px */
+.parallax {
+  transform: translate3d(0, calc(var(--p, 0) * var(--spd, 40) * 1px), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax { transform: none !important; }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
