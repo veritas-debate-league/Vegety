@@ -4,9 +4,8 @@
  * Serves the "Menu" sheet as JSON, secured by a shared secret.
  *
  * IMPORTANT: you do NOT redeploy when you change the menu data. The web app
- * reads the sheet LIVE on every request (cached 30s). Editing rows is enough.
- * Use "🌿 Vegety → Publish menu" to clear the cache for an instant refresh.
- * Redeploy is only needed if you change THIS code.
+ * reads the sheet LIVE on every request — edit a row, refresh the site, done.
+ * Redeploy (New version) is only needed if you change THIS code.
  *
  * SECURITY MODEL
  *  - Secret lives in Script Properties (WEBHOOK_KEY), never in this file/repo.
@@ -29,22 +28,6 @@
  */
 
 var SHEET_NAME = "Menu";
-var CACHE_KEY = "menu_json";
-var CACHE_TTL_SECONDS = 30;
-
-/* ----------------------------- Custom menu ----------------------------- */
-
-function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu("🌿 Vegety")
-    .addItem("Publish menu", "publishMenu")
-    .addToUi();
-}
-
-/** Clears the cache so the website shows the latest rows immediately. */
-function publishMenu() {
-  CacheService.getScriptCache().remove(CACHE_KEY);
-}
 
 /* ----------------------------- Web app --------------------------------- */
 
@@ -98,10 +81,6 @@ function constantTimeEquals_(a, b) {
 }
 
 function readMenu_() {
-  var cache = CacheService.getScriptCache();
-  var cached = cache.get(CACHE_KEY);
-  if (cached) return JSON.parse(cached);
-
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   if (!sheet) return [];
   var rows = sheet.getDataRange().getValues();
@@ -109,7 +88,7 @@ function readMenu_() {
 
   // Row 0 = headers: name | category | price | image | description
   // (id is generated here from the row number; the sheet has no id/rating columns)
-  var items = rows
+  return rows
     .slice(1)
     .filter(function (r) {
       return String(r[0] || "").trim() !== "";
@@ -124,9 +103,6 @@ function readMenu_() {
         description: String(r[4] || "").trim(),
       };
     });
-
-  cache.put(CACHE_KEY, JSON.stringify(items), CACHE_TTL_SECONDS);
-  return items;
 }
 
 function json_(obj) {

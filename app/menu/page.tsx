@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   description: "Browse our full menu of fresh salads, bowls, breakfasts and drinks. Search and filter by category.",
 };
 
-// Re-fetch from the sheet on each request so menu edits show up.
-export const revalidate = 0;
+// Always render on the server per request → menu edits show up live, no redeploy.
+export const dynamic = "force-dynamic";
 
 export default async function MenuPage() {
   const menu = await fetchMenu();
