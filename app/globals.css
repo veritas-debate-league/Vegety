@@ -74,9 +74,14 @@ body {
   .animate-cross { animation-duration: calc(var(--cd, 30s) * 0.55); }
 }
 
+/* Opacity-only — NO transform. A transform here would persist (fill: both) and
+   make this element a containing block, which walls off the card's
+   backdrop-filter from the leaves behind it (they live outside this wrapper).
+   Fading opacity only keeps the backdrop intact so the glass cards blur the
+   leaves as they pass. */
 @keyframes pageFade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .page-transition { animation: pageFade 2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
