@@ -24,14 +24,14 @@ export default async function MenuPage() {
         {/* leaves drifting across the page — scattered heights/sizes/speeds */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           {[
-            { top: "33%", size: "h-8 w-8", tone: "text-brand-400/45", dur: "27s", delay: "-3s", rot: "rotate-12" },
-            { top: "41%", size: "h-6 w-6", tone: "text-brand-300/70", dur: "36s", delay: "-20s", rot: "-rotate-6" },
-            { top: "49%", size: "h-10 w-10", tone: "text-brand-400/40", dur: "31s", delay: "-10s", rot: "rotate-45" },
-            { top: "57%", size: "h-7 w-7", tone: "text-brand-300/65", dur: "40s", delay: "-33s", rot: "-rotate-12" },
-            { top: "65%", size: "h-9 w-9", tone: "text-brand-400/45", dur: "29s", delay: "-16s", rot: "rotate-6" },
-            { top: "73%", size: "h-6 w-6", tone: "text-brand-300/70", dur: "44s", delay: "-40s", rot: "rotate-90" },
-            { top: "82%", size: "h-8 w-8", tone: "text-brand-400/40", dur: "33s", delay: "-25s", rot: "-rotate-45" },
-            { top: "91%", size: "h-7 w-7", tone: "text-brand-300/65", dur: "37s", delay: "-7s", rot: "rotate-12" },
+            { top: "33%", size: "h-11 w-11", tone: "text-brand-400/80", dur: "27s", delay: "-3s", rot: "rotate-12" },
+            { top: "41%", size: "h-10 w-10", tone: "text-brand-300/90", dur: "36s", delay: "-20s", rot: "-rotate-6" },
+            { top: "49%", size: "h-12 w-12", tone: "text-brand-400/80", dur: "31s", delay: "-10s", rot: "rotate-45" },
+            { top: "57%", size: "h-10 w-10", tone: "text-brand-300/85", dur: "40s", delay: "-33s", rot: "-rotate-12" },
+            { top: "65%", size: "h-11 w-11", tone: "text-brand-400/80", dur: "29s", delay: "-16s", rot: "rotate-6" },
+            { top: "73%", size: "h-10 w-10", tone: "text-brand-300/90", dur: "44s", delay: "-40s", rot: "rotate-90" },
+            { top: "82%", size: "h-11 w-11", tone: "text-brand-400/80", dur: "33s", delay: "-25s", rot: "-rotate-45" },
+            { top: "91%", size: "h-10 w-10", tone: "text-brand-300/85", dur: "37s", delay: "-7s", rot: "rotate-12" },
           ].map((l, i) => (
             <span
               key={i}
