@@ -21,16 +21,6 @@ export default async function MenuPage() {
     <>
       <Navbar />
       <main className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-brand-50/40 to-white">
-        {/* soft colored blobs so the glass cards always have something to frost
-            over (otherwise glass over the near-white bg looks plain white) */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <span className="absolute left-[4%] top-[14%] h-72 w-72 rounded-full bg-brand-300/40 blur-3xl" />
-          <span className="absolute right-[6%] top-[34%] h-80 w-80 rounded-full bg-emerald-300/35 blur-3xl" />
-          <span className="absolute left-[12%] top-[55%] h-72 w-72 rounded-full bg-brand-400/35 blur-3xl" />
-          <span className="absolute right-[10%] top-[72%] h-80 w-80 rounded-full bg-emerald-200/40 blur-3xl" />
-          <span className="absolute left-[8%] top-[90%] h-72 w-72 rounded-full bg-brand-300/35 blur-3xl" />
-        </div>
-
         {/* leaves drifting across the page — scattered heights/sizes/speeds */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           {[
