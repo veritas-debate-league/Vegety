@@ -53,15 +53,15 @@ body {
   from { opacity: 0; transform: translateX(16px); }
   to { opacity: 1; transform: translateX(0); }
 }
-/* Animate `left` (NOT transform). Transform-animated elements get their own GPU
-   layer that desktop backdrop-filter skips, so the glassy cards couldn't blur
-   them. Animating `left` keeps the leaves on the normal layer → the cards blur
-   them as they pass behind. */
+/* Animate ONLY `left` — no transform, no opacity. Animating transform OR opacity
+   promotes the leaf to its own GPU layer, which desktop backdrop-filter cannot
+   sample, so the glass cards couldn't blur it (mobile composites differently, so
+   it worked there). Pure `left` keeps the leaf on the page layer → the cards
+   blur it as it passes behind, on every browser. The leaf slides in/out past the
+   screen edges (-10vw → 110vw), so no opacity fade is needed. */
 @keyframes crossDrift {
-  0% { left: -10vw; opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { left: 110vw; opacity: 0; }
+  0% { left: -10vw; }
+  100% { left: 110vw; }
 }
 
 .animate-cross {
