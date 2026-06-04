@@ -7,7 +7,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
   return (
     <article
       aria-disabled={unavailable}
-      className={`group rounded-xl2 border border-white/60 bg-gradient-to-br from-white/55 to-white/30 p-3 shadow-soft backdrop-blur-2xl transition-shadow duration-200 hover:shadow-card ${
+      className={`group rounded-xl2 border border-white/70 bg-gradient-to-br from-white/45 to-white/20 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] ring-1 ring-inset ring-white/40 backdrop-blur-3xl transition-shadow duration-200 hover:shadow-card ${
         unavailable ? "opacity-75" : ""
       }`}
     >
