@@ -7,7 +7,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
   return (
     <article
       aria-disabled={unavailable}
-      className={`group rounded-xl2 border border-white/80 bg-white/95 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] transition-shadow duration-200 hover:shadow-card lg:border-white/70 lg:bg-gradient-to-br lg:from-white/55 lg:to-white/35 lg:ring-1 lg:ring-inset lg:ring-white/45 lg:backdrop-blur-[42px] ${
+      className={`group rounded-xl2 border border-white/80 bg-white/95 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] transition-shadow duration-200 hover:shadow-card lg:border-white/65 lg:bg-gradient-to-br lg:from-white/45 lg:to-white/25 lg:ring-1 lg:ring-inset lg:ring-white/40 lg:backdrop-blur-[56px] ${
         unavailable ? "opacity-75" : ""
       }`}
     >
