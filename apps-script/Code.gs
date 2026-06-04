@@ -86,8 +86,9 @@ function readMenu_() {
   var rows = sheet.getDataRange().getValues();
   if (rows.length < 2) return [];
 
-  // Row 0 = headers: name | category | price | image | description
-  // (id is generated here from the row number; the sheet has no id/rating columns)
+  // Row 0 = headers: name | category | price | image | description | out_of_menu
+  // (id is generated here from the row number)
+  // out_of_menu: leave empty for available; put "yes" to mark Unavailable.
   return rows
     .slice(1)
     .filter(function (r) {
@@ -101,6 +102,7 @@ function readMenu_() {
         price: parseFloat(r[2]) || 0,
         image: String(r[3] || "").trim(),
         description: String(r[4] || "").trim(),
+        available: String(r[5] || "").trim().toLowerCase() !== "yes",
       };
     });
 }

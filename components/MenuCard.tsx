@@ -2,8 +2,15 @@ import Image from "next/image";
 import type { MenuItem } from "@/lib/types";
 
 export default function MenuCard({ item }: { item: MenuItem }) {
+  const unavailable = !item.available;
+
   return (
-    <article className="group rounded-xl2 bg-white p-3 shadow-soft transition-shadow duration-200 hover:shadow-card">
+    <article
+      aria-disabled={unavailable}
+      className={`group rounded-xl2 border border-white/60 bg-white/70 p-3 shadow-soft backdrop-blur-md transition-shadow duration-200 hover:shadow-card ${
+        unavailable ? "opacity-75" : ""
+      }`}
+    >
       <div className="relative aspect-[5/4] overflow-hidden rounded-2xl rounded-tl-none rounded-br-none">
         {item.image ? (
           <Image
@@ -11,7 +18,9 @@ export default function MenuCard({ item }: { item: MenuItem }) {
             alt={item.name}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+              unavailable ? "grayscale" : ""
+            }`}
           />
         ) : (
           <div className="h-full w-full bg-brand-100" />
@@ -22,6 +31,13 @@ export default function MenuCard({ item }: { item: MenuItem }) {
         <span className="absolute bottom-0 right-0 rounded-tl-2xl bg-white px-3 py-1.5 font-display text-sm font-bold text-brand-500 shadow-sm">
           £{item.price.toFixed(2)}
         </span>
+        {unavailable && (
+          <div className="absolute inset-0 grid place-items-center bg-white/40">
+            <span className="rounded-full bg-ink/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-sm">
+              Unavailable
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="px-2 py-4">

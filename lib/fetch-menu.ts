@@ -35,6 +35,7 @@ function sanitize(items: unknown): MenuItem[] {
         price: Number(r.price) || 0,
         image: String(r.image ?? "").trim(),
         description: String(r.description ?? "").trim(),
+        available: r.available !== false, // default available unless flagged
       };
     })
     .filter((m) => m.name.length > 0);
