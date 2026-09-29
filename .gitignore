@@ -33,3 +33,5 @@ yarn-error.log*
 
 # claude local settings
 /.claude
+.vercel
+.env*
