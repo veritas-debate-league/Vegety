@@ -105,7 +105,11 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .parallax { transform: none !important; }
+  /* ponytail: one-shot leaves have no resting spot, so just hide them */
+  .animate-cross { display: none; }
   * {
+    /* without this, `infinite` loops replay every 0.01ms → frantic jitter */
+    animation-iteration-count: 1 !important;
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
