@@ -68,11 +68,6 @@ body {
   animation: crossDrift linear infinite backwards;
   animation-duration: var(--cd, 30s);
 }
-/* Phone screens are narrow, so the leaves cover less distance per second and
-   look slow — shorten the duration (~45% faster) to match the desktop feel. */
-@media (max-width: 640px) {
-  .animate-cross { animation-duration: calc(var(--cd, 30s) * 0.55); }
-}
 
 /* Opacity-only — NO transform. A transform here would persist (fill: both) and
    make this element a containing block, which walls off the card's
